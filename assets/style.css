@@ -1,0 +1,25 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Comic Neue';
+}
+img{
+  max-width: 100%;
+}
+header{
+  
+}
+#header{
+  /* display: flex; */
+  justify-content: space-between;
+  margin: 0 5%;
+  font-size: 1.3em;
+}
+#logo{
+
+  
+}
+#carrusel{
+  height: 9.09vh;
+}
