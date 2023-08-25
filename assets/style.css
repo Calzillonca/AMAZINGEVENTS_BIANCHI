@@ -1,14 +1,9 @@
 *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Comic Neue';
+  
+  /* outline: 1px solid red; */
 }
 img{
   max-width: 100%;
-}
-header{
-  
 }
 #header{
   /* display: flex; */
@@ -16,10 +11,13 @@ header{
   margin: 0 5%;
   font-size: 1.3em;
 }
-#logo{
-
-  
-}
 #carrusel{
   height: 9.09vh;
+}
+#checkouts{
+  padding: 0px 10px;
+  background-color: lightcyan;
+}
+#main{
+  margin: 0 5%;
 }
