@@ -1,9 +1,13 @@
 *{
-  
   /* outline: 1px solid red; */
 }
 img{
   max-width: 100%;
+}
+body{
+  display: flex;
+  flex-direction: column;
+  
 }
 #header{
   /* display: flex; */
@@ -20,4 +24,12 @@ img{
 }
 #main{
   margin: 0 5%;
+}
+#footer{
+  margin: 0 5%;
+  align-items: flex-end;
+}
+#prueba{
+  background: red;
+  display: flex;
 }
