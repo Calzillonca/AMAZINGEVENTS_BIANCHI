@@ -1,21 +1,31 @@
+//capturar informacion de la tarjeta
+const queryString = location.search;
+const parametros = new URLSearchParams(queryString);
+const id = parametros.get("_id");
+const evento = data.events.find(idEvento => idEvento._id == id);
+
 //capturar info de la tarjeta clickeada, para poder reemplazar por informacion polar mas abajo
-
-
 const contenedorTarjetas = document.getElementById('tarjetaDetails');
-  let card = 
+contenedorTarjetas.innerHTML = 
   `<div class="container">
     <div class="card">
       <div class="row g-0">
         <div class="col-6">
-          <img src="Recursos_Amazing_Events_Task_1/costume_party.jpg" class="img-fluid w-100 h-100 rounded-start" alt="imagen">
+          <img src="${evento.image}" class="img-fluid w-100 h-100 rounded-start" alt="${evento.name}">
         </div>
         <div class="col-6">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <h5 class="card-title">${evento.name}</h5>
+            <p class="card-text">${evento.description}</p>
+            <p class="card-text">Category: ${evento.category}</p>
+            <p class="card-text">Date: ${evento.date}</p>
+            <p class="card-text">Capacity: ${evento.capacity}</p>
+            <p class="card-text">Estimate: ${evento.estimate}</p>
+            <p class="card-text">Assistance: ${evento.assistance}</p>
+            <p class="card-text">Place: ${evento.place}</p>
+            <p class="card-text">Price: ${evento.price}</p>
           </div>
         </div>
       </div>
     </div>
   </div>`;
-contenedorTarjetas.innerHTML += card;
