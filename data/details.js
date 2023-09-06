@@ -4,9 +4,16 @@ const parametros = new URLSearchParams(queryString);
 const id = parametros.get("_id");
 const evento = data.events.find(idEvento => idEvento._id == id);
 
+let estimado = ''
+if(evento.estimate){
+  estimado = `<p class="card-text">Estimate: ${evento.estimate}</p>`
+}else{
+  estimado = `<p class="card-text">Assistance: ${evento.assistance}</p>`
+}
+
 //capturar info de la tarjeta clickeada, para poder reemplazar por informacion polar mas abajo
 const contenedorTarjetas = document.getElementById('tarjetaDetails');
-contenedorTarjetas.innerHTML = 
+contenedorTarjetas.innerHTML =
   `<div class="container">
     <div class="card">
       <div class="row g-0">
@@ -20,8 +27,7 @@ contenedorTarjetas.innerHTML =
             <p class="card-text">Category: ${evento.category}</p>
             <p class="card-text">Date: ${evento.date}</p>
             <p class="card-text">Capacity: ${evento.capacity}</p>
-            <p class="card-text">Estimate: ${evento.estimate}</p>
-            <p class="card-text">Assistance: ${evento.assistance}</p>
+            ${estimado}
             <p class="card-text">Place: ${evento.place}</p>
             <p class="card-text">Price: ${evento.price}</p>
           </div>
