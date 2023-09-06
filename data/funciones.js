@@ -1,7 +1,12 @@
-// Creacion dinamica de tarjetas (index, upcoming, past)
-function creadorTarjetas(objeto){
+// Creacion dinamica de tarjetas (index, upcoming-events, past-events)
+function creadorTarjetas(objeto){ 
   const contenedorTarjetas = document.getElementById('mainTarjetas');
-  for(let tarjeta of objeto.events){
+  contenedorTarjetas.innerHTML = ``;
+  if(objeto.length == 0){
+    contenedorTarjetas.innerHTML = '<h2>No related events found<h2>'
+    return;
+  }
+  for(let tarjeta of objeto){
     let card = 
     `<div class="card col-12 col-sm-6 col-md-4 col-xl-3" id="tarjeta">
       <img src="${tarjeta.image}" class="card-img-top" alt="${tarjeta.name}">
@@ -16,10 +21,9 @@ function creadorTarjetas(objeto){
     </div>`;
   contenedorTarjetas.innerHTML += card;
   }
-  return contenedorTarjetas;
 }
 
-//Creacion dinamica de Checkouts (index, upcoming, past)
+//Creacion dinamica de Checkouts (index, upcoming-events, past-events)
 function creadorCheckouts(objeto){
   const contenedorChkout = document.getElementById('checkouts');
   let arrayCategory = objeto.events.map(element => ({
@@ -29,13 +33,25 @@ function creadorCheckouts(objeto){
   let arrayListo = borrarDuplicados(arrayCategory).sort((a, b) => a.category.localeCompare(b.category));
   for(let checkout of arrayListo){
     let chkout =
-    `<div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="${checkout._id}" value="option1">
+    `<div class="form-check form-check-inline" id="chk">
+      <input class="form-check-input" type="checkbox" id="${checkout._id}" value="${checkout.category}">
       <label class="form-check-label" for="${checkout._id}">${checkout.category}</label>
     </div>`
     contenedorChkout.innerHTML += chkout;
   }
-  return contenedorChkout;
+  return ;
+}
+
+//Creacion de barra de busqueda
+function crearBuscador(){
+  const contenedorBuscador = document.getElementById('contendorSearch')
+  let card = 
+    `<div class="container-fluid justify-content-end">
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Find your event!!" aria-label="Search" value="" id="buscador">
+      </form>
+    </div>`;
+  contenedorBuscador.innerHTML = card;
 }
 
 //funcion para quitar espacios y sacar mayusculas
@@ -43,7 +59,7 @@ function normalizar(array){
   return array.toLowerCase().trim();
 }
 
-//funcion para eliminar elementos duplicados (debe usarse posterior a normalizar())
+//funcion para eliminar elementos duplicados (debe usarse despues de normalizar())
 function borrarDuplicados(array){
   let categorias = new Set();
   let arrayMuestra = [];
@@ -62,15 +78,27 @@ function stringToDate(fecha){
   return diaActual;
 }
 
-// Creacion dinamica de tarjetas para details.html
+function filtrarPorTexto(array, texto){
+  let arrayFiltrado = array.filter(elemento => elemento.name.trim().toLowerCase().includes(texto.trim().toLowerCase())); 
+  return arrayFiltrado;
+}
+
+function filtrarPorCheckbox(arrayEventos){
+  let checkboxes = Array.from(document.getElementsByClassName('form-check-input'))
+  let checkboxesActivos = checkboxes.filter(elemento => elemento.checked)
+  let valores = checkboxesActivos.map(elemento => elemento.value)
+  if(valores.length == 0){
+    return arrayEventos;
+  }
+  let arregloFiltrado = arrayEventos.filter(element => valores.includes(normalizar(element.category)))
+  return arregloFiltrado;
+  
+}
+
+function todosLosFiltros(arrayEventos){
+  let filtro1 = filtrarPorCheckbox(arrayEventos)
+  let filtro2 = filtrarPorTexto(filtro1, buscador.value);
+  creadorTarjetas(filtro2);
+}
 
 
-
-
-//funcion para capitalizar iniciales de un array de strings
-// function capitalizarCategorias(array){
-//   return array.map(element => {
-//     // Dividir la cadena en palabras
-//     const words = element.split(' ');
-//   });
-// }

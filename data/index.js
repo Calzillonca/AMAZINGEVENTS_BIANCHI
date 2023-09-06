@@ -1,5 +1,22 @@
-// Creacion dinamica de tarjetas (index, upcoming, past)
-creadorTarjetas(data)
+const contenedorTarjetas = document.getElementById('mainTarjetas');
+crearBuscador()
+const buscador = document.getElementById('buscador')
 
-//Creacion dinamica de Checkouts (index, upcoming, past)
-creadorCheckouts(data)
+let eventosActuales = data;
+let eventosActualesBi = eventosActuales.events;
+
+creadorTarjetas(eventosActualesBi)
+
+creadorCheckouts(eventosActuales)
+const checkbox = Array.from(document.getElementsByClassName('form-check-input'))
+
+buscador.addEventListener('input', () =>{
+  todosLosFiltros(eventosActualesBi)
+})
+
+
+checkbox.forEach(element => {
+  element.addEventListener('change', ()=>{
+    todosLosFiltros(eventosActualesBi)
+  })
+});
