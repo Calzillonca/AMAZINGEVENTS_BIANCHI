@@ -1,3 +1,21 @@
+
+  let data = null;
+  let datosAPI = "https://mindhub-xj03.onrender.com/api/amazing";
+  
+  fetch(datosAPI)
+    .then(respuesta => respuesta.json())
+    .then(datosJson => {
+      data = datosJson;
+      index(data)
+      pastEvents(data)
+      upcomingEvents(data)
+      details(data)
+      contact(data)
+      stats(data)
+    })
+
+
+
 // Creacion dinamica de tarjetas (index, upcoming-events, past-events)
 function creadorTarjetas(objeto){ 
   const contenedorTarjetas = document.getElementById('mainTarjetas');
@@ -100,5 +118,3 @@ function todosLosFiltros(arrayEventos){
   let filtro2 = filtrarPorTexto(filtro1, buscador.value);
   creadorTarjetas(filtro2);
 }
-
-
