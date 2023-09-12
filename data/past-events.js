@@ -25,5 +25,5 @@ function pastEvents(objeto){
       todosLosFiltros(eventosPasadosBi)
     })
   });
-
+  
 }

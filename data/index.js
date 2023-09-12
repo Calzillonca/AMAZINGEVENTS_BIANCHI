@@ -3,7 +3,7 @@ crearBuscador()
 const buscador = document.getElementById('buscador')
 
 function index(objeto){
-  console.log(objeto);
+  
   let eventosActuales = objeto;
   let eventosActualesBi = eventosActuales.events;
 
@@ -23,6 +23,5 @@ function index(objeto){
       todosLosFiltros(eventosActualesBi)
     })
   });
-  console.log(eventosActuales)
 }
 

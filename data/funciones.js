@@ -1,19 +1,36 @@
 
   let data = null;
   let datosAPI = "https://mindhub-xj03.onrender.com/api/amazing";
-  
+
   fetch(datosAPI)
     .then(respuesta => respuesta.json())
     .then(datosJson => {
       data = datosJson;
-      index(data)
-      pastEvents(data)
-      upcomingEvents(data)
-      details(data)
-      contact(data)
-      stats(data)
+      
+      switch (document.title){
+        case "Home":
+          index(data);
+          break
+        case "Past Events":
+          pastEvents(data);
+          break
+        case "Upcoming Events":
+          upcomingEvents(data);
+          break
+        case "Contact":
+          contact(data);
+          break
+        case "Stats":
+          stats(data);
+          break
+        case "Details":
+          details(data);
+          break
+        default:
+          break
+      }
     })
-
+  
 
 
 // Creacion dinamica de tarjetas (index, upcoming-events, past-events)
@@ -33,7 +50,7 @@ function creadorTarjetas(objeto){
         <p class="card-text">${tarjeta.description}</p>
         <div class="card-footer d-flex justify-content-between">
           <p id="price">Price: $${tarjeta.price}</p>
-          <a href="details.html?_id=${tarjeta._id}" class="btn btn-primary" id="botonDetalles">Details</a>
+          <a href="details.html?_id=${tarjeta._id}" class="btn btn-primary p-1 m-1" id="botonDetalles">Details</a>
         </div>
       </div>
     </div>`;

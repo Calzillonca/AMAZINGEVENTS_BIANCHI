@@ -25,6 +25,7 @@ function upcomingEvents(objeto){
       todosLosFiltros(eventosFuturosBi)
     })
   });
+  
 }
 
 
